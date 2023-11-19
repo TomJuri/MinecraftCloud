@@ -1,23 +1,27 @@
 package de.tomjuri.hycloud.controller.group;
 
-import de.tomjuri.hycloud.api.group.IGroupProvider;
-import de.tomjuri.hycloud.api.group.IGroup;
+import de.tomjuri.hycloud.api.group.GroupProvider;
+import de.tomjuri.hycloud.api.group.Group;
+import dev.derklaro.aerogel.auto.Provides;
+import jakarta.inject.Singleton;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GroupProviderImpl implements IGroupProvider {
+@Singleton
+@Provides(GroupProvider.class)
+public class GroupProviderImpl implements GroupProvider {
 
-    private final Map<String, IGroup> groupPool = new HashMap<>();
+    private final Map<String, Group> groupPool = new HashMap<>();
 
     @Override
-    public IGroup getGroup(String name) {
+    public Group getGroup(String name) {
         return groupPool.get(name);
     }
 
     @Override
-    public List<IGroup> getGroups() {
+    public List<Group> getGroups() {
         return groupPool.values().stream().toList();
     }
 
@@ -27,12 +31,12 @@ public class GroupProviderImpl implements IGroupProvider {
     }
 
     @Override
-    public void createGroup(IGroup group) {
+    public void createGroup(Group group) {
         groupPool.put(group.getName(), group);
     }
 
     @Override
-    public void deleteGroup(IGroup group) {
+    public void deleteGroup(Group group) {
         groupPool.remove(group.getName());
     }
 }

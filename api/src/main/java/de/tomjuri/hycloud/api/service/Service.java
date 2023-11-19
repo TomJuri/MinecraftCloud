@@ -1,10 +1,10 @@
 package de.tomjuri.hycloud.api.service;
 
-import de.tomjuri.hycloud.api.group.IGroup;
+import de.tomjuri.hycloud.api.group.Group;
 
-public interface IService {
+public interface Service {
     String getName();
-    IGroup getGroup();
+    Group getGroup();
     void start();
     void stop();
 }

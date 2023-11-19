@@ -19,8 +19,8 @@ dependencies {
     embed("org.fusesource.jansi:jansi:2.4.1")
     embed("cloud.commandframework:cloud-core:1.8.4")
     embed("cloud.commandframework:cloud-annotations:1.8.4")
-    embed("com.google.dagger:dagger:2.48.1")
-    annotationProcessor("com.google.dagger:dagger-compiler:2.48.1")
+    implementation("dev.derklaro.aerogel:aerogel-auto:2.1.0")
+    annotationProcessor("dev.derklaro.aerogel:aerogel-auto:2.1.0")
     annotationProcessor("cloud.commandframework:cloud-annotations:1.8.4")
 }
 
@@ -28,6 +28,10 @@ tasks.build.get().dependsOn(tasks.shadowJar)
 
 tasks.jar {
     manifest.attributes["Main-Class"] = "de.tomjuri.hycloud.controller.Launcher"
+}
+
+tasks.compileJava {
+    options.compilerArgs.add("-AaerogelAutoFileName=autoconfigure/bindings.aero")
 }
 
 tasks.shadowJar {

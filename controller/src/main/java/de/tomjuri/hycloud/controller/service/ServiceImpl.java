@@ -1,15 +1,18 @@
 package de.tomjuri.hycloud.controller.service;
 
-import de.tomjuri.hycloud.api.group.IGroup;
-import de.tomjuri.hycloud.api.service.IService;
+import de.tomjuri.hycloud.api.group.Group;
+import de.tomjuri.hycloud.api.service.Service;
+import dev.derklaro.aerogel.auto.Provides;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class ServiceImpl implements IService {
+public class ServiceImpl implements Service {
+
     private final String name;
-    private final IGroup group;
+    private final Group group;
     private final Process process;
 
     @Override

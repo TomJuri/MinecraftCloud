@@ -1,5 +1,5 @@
 package de.tomjuri.hycloud.api.command;
 
-public interface ICommandSender {
+public interface CommandSender {
     void sendMessage(String message);
 }

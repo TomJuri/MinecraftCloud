@@ -1,6 +1,6 @@
 package de.tomjuri.hycloud.api.group;
 
-public interface IGroup {
+public interface Group {
     String getName();
     int getGetMinOnlineCount();
     GroupType getType();
