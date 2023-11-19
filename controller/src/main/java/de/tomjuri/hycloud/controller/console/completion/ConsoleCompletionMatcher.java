@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-final class ConsoleCompletionMatcher implements CompletionMatcher {
+public final class ConsoleCompletionMatcher implements CompletionMatcher {
 
     private volatile List<Candidate> candidates;
     private volatile CompletingParsedLine parsedLine;
