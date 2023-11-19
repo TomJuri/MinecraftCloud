@@ -22,6 +22,6 @@ public class Controller extends CloudAPI {
     }
 
     public void start() {
-        console.start();
+        this.console.start();
     }
 }

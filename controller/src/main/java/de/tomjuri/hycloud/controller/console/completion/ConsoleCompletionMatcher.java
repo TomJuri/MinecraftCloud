@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.tomjuri.hycloud.controller.console;
+package de.tomjuri.hycloud.controller.console.completion;
 
 import org.jline.reader.Candidate;
 import org.jline.reader.CompletingParsedLine;

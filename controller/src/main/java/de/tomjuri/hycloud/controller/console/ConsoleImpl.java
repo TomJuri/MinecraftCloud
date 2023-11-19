@@ -1,6 +1,8 @@
 package de.tomjuri.hycloud.controller.console;
 
 import de.tomjuri.hycloud.controller.command.CommandProvider;
+import de.tomjuri.hycloud.controller.console.completion.ConsoleCompleter;
+import de.tomjuri.hycloud.controller.console.completion.ConsoleCompletionMatcher;
 import dev.derklaro.aerogel.auto.Provides;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;

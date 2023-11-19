@@ -1,5 +1,6 @@
-package de.tomjuri.hycloud.controller.console;
+package de.tomjuri.hycloud.controller.console.completion;
 
+import de.tomjuri.hycloud.controller.console.Console;
 import org.jline.reader.Candidate;
 import org.jline.reader.Completer;
 import org.jline.reader.LineReader;
@@ -17,6 +18,6 @@ public class ConsoleCompleter implements Completer {
 
     @Override
     public void complete(LineReader reader, ParsedLine line, List<Candidate> candidates) {
-        console.getCommandProvider().getCompletions(line.line()).forEach(suggestion -> candidates.add(new Candidate(suggestion)));
+        this.console.getCommandProvider().getCompletions(line.line()).forEach(suggestion -> candidates.add(new Candidate(suggestion)));
     }
 }

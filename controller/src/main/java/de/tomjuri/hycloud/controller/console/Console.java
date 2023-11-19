@@ -1,7 +1,6 @@
 package de.tomjuri.hycloud.controller.console;
 
 import de.tomjuri.hycloud.controller.command.CommandProvider;
-import de.tomjuri.hycloud.controller.command.CommandProviderImpl;
 import org.jline.reader.LineReader;
 
 public interface Console {

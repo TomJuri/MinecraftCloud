@@ -17,9 +17,9 @@ public class ConsoleRunner extends Thread {
     public void run() {
         try {
             String line;
-            while ((line = console.getLineReader().readLine(ConsoleColor.toColoredString('&', "&bHyCloud &7» "))) != null) {
+            while ((line = this.console.getLineReader().readLine(ConsoleColor.toColoredString('&', "&bHyCloud &7» "))) != null) {
                 if (line.trim().isEmpty()) continue;
-                console.getCommandProvider().call(line.trim());
+                this.console.getCommandProvider().call(line.trim());
             }
         } catch(UserInterruptException ignored) {
             System.exit(0);

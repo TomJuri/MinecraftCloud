@@ -1,31 +1,26 @@
-package de.tomjuri.hycloud.controller.command;
+package de.tomjuri.hycloud.controller.command.impl;
 
-import cloud.commandframework.Command;
 import cloud.commandframework.CommandManager;
 import cloud.commandframework.annotations.AnnotationParser;
-import cloud.commandframework.arguments.CommandArgument;
 import cloud.commandframework.exceptions.*;
-import cloud.commandframework.execution.CommandExecutionCoordinator;
-import cloud.commandframework.internal.CommandRegistrationHandler;
-import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.meta.SimpleCommandMeta;
 import de.tomjuri.hycloud.api.command.CommandSender;
 import de.tomjuri.hycloud.api.group.GroupProvider;
+import de.tomjuri.hycloud.controller.command.CommandProvider;
 import de.tomjuri.hycloud.controller.command.cmd.GroupCommand;
 import de.tomjuri.hycloud.controller.command.cmd.HelpCommand;
 import dev.derklaro.aerogel.auto.Provides;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import lombok.Getter;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Singleton
 @Provides(CommandProvider.class)
 public class CommandProviderImpl implements CommandProvider {
 
+    @Getter
     private final CommandManager<CommandSender> commandManager;
     private final AnnotationParser<CommandSender> annotationParser;
     private final CommandSender sender;
@@ -35,9 +30,15 @@ public class CommandProviderImpl implements CommandProvider {
         this.commandManager = new CloudCommandManager();
         this.annotationParser = new AnnotationParser<>(this.commandManager, CommandSender.class, parameters -> SimpleCommandMeta.empty());
         this.sender = sender;
+    }
 
-        registerCommand(new GroupCommand(groupProvider));
-        registerCommand(new HelpCommand(this.commandManager));
+    @Inject
+    public void registerDefaultCommands(
+            GroupCommand groupCommand,
+            HelpCommand helpCommand
+    ) {
+        this.registerCommand(groupCommand);
+        this.registerCommand(helpCommand);
     }
 
     public void registerCommand(Object command) {
@@ -70,6 +71,4 @@ public class CommandProviderImpl implements CommandProvider {
     public List<String> getCompletions(String input) {
         return this.commandManager.suggest(this.sender, input);
     }
-
-
 }

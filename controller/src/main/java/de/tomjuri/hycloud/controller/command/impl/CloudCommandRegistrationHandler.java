@@ -1,15 +1,23 @@
-package de.tomjuri.hycloud.controller.command.system;
+package de.tomjuri.hycloud.controller.command.impl;
 
-private static class CloudCommandRegistrationHandler implements CommandRegistrationHandler {
+import cloud.commandframework.Command;
+import cloud.commandframework.arguments.CommandArgument;
+import cloud.commandframework.internal.CommandRegistrationHandler;
+import de.tomjuri.hycloud.api.command.CommandSender;
 
-        private final Map<CommandArgument<?, ?>, Command<CommandSender>> commands = new HashMap<>();
+import java.util.HashMap;
+import java.util.Map;
 
-        @Override
-        @SuppressWarnings("unchecked")
-        public boolean registerCommand(@NonNull Command<?> command) {
-            CommandArgument<?, ?> commandArgument = command.getArguments().get(0);
-            if (this.commands.containsKey(commandArgument)) return false;
-            this.commands.put(commandArgument, (Command<CommandSender>) command);
-            return true;
-        }
+public class CloudCommandRegistrationHandler implements CommandRegistrationHandler {
+
+    private final Map<CommandArgument<?, ?>, Command<CommandSender>> commands = new HashMap<>();
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean registerCommand(Command<?> command) {
+        CommandArgument<?, ?> commandArgument = command.getArguments().get(0);
+        if (this.commands.containsKey(commandArgument)) return false;
+        this.commands.put(commandArgument, (Command<CommandSender>) command);
+        return true;
     }
+}

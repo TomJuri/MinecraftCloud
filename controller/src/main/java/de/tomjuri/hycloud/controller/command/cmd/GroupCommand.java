@@ -10,6 +10,7 @@ import de.tomjuri.hycloud.api.group.GroupType;
 import de.tomjuri.hycloud.api.group.Group;
 import de.tomjuri.hycloud.api.group.GroupProvider;
 import de.tomjuri.hycloud.controller.group.GroupImpl;
+import jakarta.inject.Inject;
 
 import java.util.List;
 import java.util.Queue;
@@ -18,6 +19,7 @@ public class GroupCommand {
 
     private final GroupProvider groupProvider;
 
+    @Inject
     public GroupCommand(GroupProvider groupProvider) {
         this.groupProvider = groupProvider;
     }
